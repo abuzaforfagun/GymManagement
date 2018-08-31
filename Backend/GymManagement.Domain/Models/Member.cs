@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using GymManagement.Models.Enums;
+using GymManagement.Domain.Models.Enums;
 
-namespace GymManagement.Models
+namespace GymManagement.Domain.Models
 {
     public class Member : Person
     {

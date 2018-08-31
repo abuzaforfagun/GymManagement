@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace GymManagement.Models
+namespace GymManagement.Domain.Models
 {
     public class Person
     {

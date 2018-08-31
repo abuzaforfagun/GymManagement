@@ -1,4 +1,4 @@
-namespace GymManagement.Models.Enums
+namespace GymManagement.Domain.Models.Enums
 {
     public enum MemberStatus
     {
