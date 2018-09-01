@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMapper;
 using GymManagement.Domain.Models;
 using GymManagement.Domain.Models.Presistance;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +36,9 @@ namespace GymManagement.Domain.Repositories
         public void Update(IMember member)
         {
             var existingItem = context.Members.SingleOrDefault(m => m.Id == member.Id);
-            context.Entry(member).State = EntityState.Modified;
+            if(existingItem == null)
+                return;
+            context.Entry(existingItem).CurrentValues.SetValues(member);
         }
 
         public void Delete(int id)

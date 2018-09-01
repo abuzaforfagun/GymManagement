@@ -2,6 +2,7 @@
 {
     public interface IUnitOfWork
     {
+        IMemberRepository MemberRepository { get; }
         void Done();
     }
 }
