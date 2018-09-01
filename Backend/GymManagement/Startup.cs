@@ -33,6 +33,7 @@ namespace GymManagement
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IMember, Member>();
             services.AddScoped<IMemberRepository, MemberRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GymDb")));
         }
