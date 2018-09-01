@@ -4,7 +4,7 @@ using GymManagement.Domain.Models.Enums;
 
 namespace GymManagement.Domain.Models
 {
-    public class Member : Person
+    public class Member : Person, IMember
     {
         [MaxLength(500)]
         public string ImageUrl { get; set; }
