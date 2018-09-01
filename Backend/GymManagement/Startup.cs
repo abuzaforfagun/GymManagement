@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using GymManagement.Domain.Models;
 using GymManagement.Domain.Models.Presistance;
 using GymManagement.Domain.Repositories;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
 
 namespace GymManagement
 {
@@ -31,11 +33,16 @@ namespace GymManagement
         {
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddScoped<IMember, Member>();
-            services.AddScoped<IMemberRepository, MemberRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddAutoMapper();
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GymDb")));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IMember, Member>();
+            services.AddScoped<IMemberRepository, MemberRepository>();
+            
+            
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
