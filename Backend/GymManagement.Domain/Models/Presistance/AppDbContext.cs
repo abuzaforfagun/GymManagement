@@ -9,7 +9,7 @@ namespace GymManagement.Domain.Models.Presistance
     public class AppDbContext : DbContext
     {
         private IConfiguration Configuration;
-        public DbSet<IMember> Members { get; set; }
+        public DbSet<Member> Members { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options):
             base(options)
