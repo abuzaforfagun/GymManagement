@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GenericServices;
 using GymManagement.Domain.Models.Presistance;
 
 namespace GymManagement.Domain.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly AppDbContext context;
         public IMemberRepository MemberRepository { get; }
 
-        public UnitOfWork(AppDbContext context)
+        public UnitOfWork(ICrudServices services)
         {
-            this.context = context;
-            this.MemberRepository = new MemberRepository(context);
+            this.MemberRepository = new MemberRepository(services);
         }
-
-        public void Done()
-        {
-            context.SaveChanges();
-        }
+        
     }
 }

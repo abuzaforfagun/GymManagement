@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
+using GenericServices.Setup;
 using GymManagement.Domain.Models;
 using GymManagement.Domain.Models.Presistance;
 using GymManagement.Domain.Repositories;
@@ -33,14 +35,16 @@ namespace GymManagement
         {
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddAutoMapper();
+            //services.AddAutoMapper();
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GymDb")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMember, Member>();
             services.AddScoped<IMemberRepository, MemberRepository>();
-            
-            
+
+            services.GenericServicesSimpleSetup<AppDbContext>(
+                Assembly.GetAssembly(typeof(MemberResourceForUpdate)), 
+                Assembly.GetAssembly(typeof(MemberResourceForSave)));
 
 
         }

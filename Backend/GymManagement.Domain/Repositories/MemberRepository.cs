@@ -3,56 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AutoMapper;
+using GenericServices;
 using GymManagement.Domain.Models;
 using GymManagement.Domain.Models.Presistance;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymManagement.Domain.Repositories
 {
     public class MemberRepository : IMemberRepository
     {
-        private readonly AppDbContext context;
+        private readonly ICrudServices service;
 
-        public MemberRepository(AppDbContext context)
+        public MemberRepository([FromServices]ICrudServices service)
         {
-            this.context = context;
+            this.service = service;
         }
 
-        public IEnumerable<IMember> Get()
+
+        public IEnumerable<Member> Get()
         {
-            return context.Members.ToList();
+            return service.ReadManyNoTracked<Member>();
         }
 
-        public IMember Get(int id)
+        public Member Get(int id)
         {
-            return context.Members.SingleOrDefault(m => m.Id == id);
+            return service.ReadSingle<Member>(id);
+
         }
 
-        public void Add(Member member)
+        public void Add(MemberResourceForSave member)
         {
-            context.Members.Add(member);
+            service.CreateAndSave(member);
         }
 
-        public void Update(IMember member)
+        public void Update(MemberResourceForUpdate member)
         {
-            var existingItem = context.Members.SingleOrDefault(m => m.Id == member.Id);
-            if(existingItem == null)
-                return;
-            context.Entry(existingItem).CurrentValues.SetValues(member);
+            service.UpdateAndSave(member);
         }
 
         public void Delete(int id)
         {
-            var item = context.Members.SingleOrDefault(m => m.Id == id);
-            if (item != null)
-            {
-                context.Members.Remove(item);
-            }
+            service.DeleteAndSave<Member>(id);
         }
 
         public void Delete(Member member)
         {
-            context.Members.Remove(member);
+            service.DeleteAndSave<Member>(member.Id);
         }
+        
     }
 }

@@ -19,18 +19,16 @@ namespace GymManagement.Controllers
         private IUnitOfWork _repo;
         private readonly IMapper mapper;
 
-        public MemberController(IUnitOfWork repo, IMapper mapper)
+        public MemberController(IUnitOfWork repo)
         {
             _repo = repo;
-            this.mapper = mapper;
         }
 
         [HttpPost]
         public IActionResult Post(MemberResourceForSave item)
         {
-            var member = Mapper.Map<Member>(item);
-            _repo.MemberRepository.Add(member);
-            _repo.Done();
+            _repo.MemberRepository.Add(item);
+            var member = _repo.MemberRepository.Get(item.Id);
             return Ok(member);
         }
 
@@ -46,21 +44,14 @@ namespace GymManagement.Controllers
         public IActionResult Get(int id)
         {
             var item = _repo.MemberRepository.Get(id);
-            if (item == null)
-            {
-                return NotFound("Item not found");
-            }
-
             return Ok(item);
         }
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, MemberResourceForUpdate member)
         {
-            var item = mapper.Map<MemberResourceForUpdate, Member>(member);
-            item.Id = id;
-            _repo.MemberRepository.Update(item);
-            _repo.Done();
+            _repo.MemberRepository.Update(member);
+            var item = _repo.MemberRepository.Get(id);
             return Ok(item);
         }
 
@@ -68,7 +59,6 @@ namespace GymManagement.Controllers
         public IActionResult Delete(int id)
         {
             _repo.MemberRepository.Delete(id);
-            _repo.Done();
             return Ok();
         }
 
@@ -76,8 +66,8 @@ namespace GymManagement.Controllers
         public IActionResult Delete(Member member)
         {
             _repo.MemberRepository.Delete(member);
-            _repo.Done();
             return Ok();
         }
     }
+
 }
