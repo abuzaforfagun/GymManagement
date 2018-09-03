@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GenericServices;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GymManagement.Domain.Models.Presistance
 {
-    public class MemberResourceForSave
+    public class MemberResourceForSave : ILinkToEntity<Member>
     {
         public int Id { get; set; }
         public string Name { get; set; }
