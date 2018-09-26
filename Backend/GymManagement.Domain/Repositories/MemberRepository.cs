@@ -32,6 +32,11 @@ namespace GymManagement.Domain.Repositories
 
         }
 
+        public Member GetDeatils(int id)
+        {
+            return service.ReadManyNoTracked<Member>().Include(m => m.Bills)
+                .SingleOrDefault(m => m.Id == id);
+        }
         public void Add(MemberResourceForSave member)
         {
             service.CreateAndSave(member);
@@ -51,6 +56,17 @@ namespace GymManagement.Domain.Repositories
         {
             service.DeleteAndSave<Member>(member.Id);
         }
-        
+
+        public void AddBill(int memberId, Bill bill)
+        {
+            var member = Get(memberId);
+            member.Bills.Add(bill);
+            service.UpdateAndSave(member);
+        }
+
+        public List<Bill> GetBills(int memberId)
+        {
+            return GetDeatils(memberId).Bills;
+        }
     }
 }

@@ -8,6 +8,6 @@ namespace GymManagement.Domain.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public DateTime BillingDate { get; set; }
+        public DateTime UpdateDate { get; set; }
     }
 }

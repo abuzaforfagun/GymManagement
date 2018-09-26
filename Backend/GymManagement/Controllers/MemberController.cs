@@ -47,6 +47,22 @@ namespace GymManagement.Controllers
             return Ok(item);
         }
 
+        [HttpGet]
+        [Route("{id}/details")]
+        public IActionResult GetMemberDetails(int id)
+        {
+            var item = _repo.MemberRepository.GetDeatils(id);
+            return Ok(item);
+        }
+
+        [HttpGet]
+        [Route("{id}/bill")]
+        public IActionResult GetMemberBills(int id)
+        {
+            var item = _repo.MemberRepository.GetBills(id);
+            return Ok(item);
+        }
+
         [HttpPut("{id}")]
         public IActionResult Put(int id, MemberResourceForUpdate member)
         {
@@ -61,11 +77,12 @@ namespace GymManagement.Controllers
             _repo.MemberRepository.Delete(id);
             return Ok();
         }
+        
 
-        [HttpDelete]
-        public IActionResult Delete(Member member)
+        [HttpPost("{id}/Bill")]
+        public IActionResult AddBill(int id, [FromBody] Bill bill)
         {
-            _repo.MemberRepository.Delete(member);
+            _repo.MemberRepository.AddBill(id, bill);
             return Ok();
         }
     }
