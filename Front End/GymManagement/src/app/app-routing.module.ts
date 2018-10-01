@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 
 const appRoutes: Routes = [
-  // { path: 'stories', component: StoriesComponent },
+  { path: 'login', component: LoginComponent },
   // { path: 'stories/form', component: StoryFormComponent },
   // { path: 'stories/form/:id', component: StoryFormComponent },
   // { path: 'login', component: LoginComponent },
