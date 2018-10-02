@@ -49,10 +49,6 @@ rltAndLtr() {
     dom.classList.toggle('rtl');
 }
 
-changeLang(language: string) {
-    this.translate.use(language);
-}
-
 onLoggedout() {
     localStorage.removeItem('isLoggedin');
 }
