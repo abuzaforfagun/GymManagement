@@ -1,3 +1,19 @@
-<p>
-  login works!
-</p>
+<div class="login-page">
+  <div class="login-container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <!-- <img src="assets/images/logo.png" width="150px" class="user-avatar" /> -->
+        <h1>Speed Gym</h1>
+          <div class="form-content">
+            <div class="form-group">
+              <input type="text" [(ngModel)] = "username" class="form-control input-underline input-lg" name="txtUsername" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input type="password" [(ngModel)] = "password"  class="form-control input-underline input-lg" name="txtPassword" placeholder="Password">
+            </div>
+          </div>
+          <button class="btn rounded-btn"(click)="onLoggedin()"> Log in </button>
+      </div>
+    </div>
+  </div>
+</div>
