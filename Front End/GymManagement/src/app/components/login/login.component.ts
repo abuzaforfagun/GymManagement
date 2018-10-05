@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/core/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +10,13 @@ export class LoginComponent implements OnInit {
 
   username: any;
   password: any;
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   onLoggedin(){
+    this.authService.isAuthenticate = true;
     console.log(`Username: ${this.username}; Password: ${this.password}`)
   }
 }

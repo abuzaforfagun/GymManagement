@@ -1,4 +1,6 @@
-<app-login></app-login>
-<!-- <app-header></app-header>
+<app-login  *ngIf="!authService.isAuthenticate"></app-login>
+<div *ngIf="authService.isAuthenticate">
+<app-header></app-header>
 <app-sidebar (collapsedEvent)="receiveCollapsed($event)"></app-sidebar>
-<router-outlet></router-outlet> -->
+<router-outlet></router-outlet>
+</div>
