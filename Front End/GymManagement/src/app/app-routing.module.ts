@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { MemberListComponent } from './components/member/member-list/member-list.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'members', component: MemberListComponent },
   // { path: 'stories/form', component: StoryFormComponent },
   // { path: 'stories/form/:id', component: StoryFormComponent },
   // { path: 'login', component: LoginComponent },

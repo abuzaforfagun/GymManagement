@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberListComponent implements OnInit {
 
-  constructor() { }
+  userList: any[];
+  constructor() { 
+    this.userList =[1,2,3];
+  }
 
   ngOnInit() {
   }

@@ -14,6 +14,7 @@ import { MemberService } from './services/member.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/core/auth.service';
+import { UserInfoMenuComponent } from './components/user-info-menu/user-info-menu.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthService } from './services/core/auth.service';
     SidebarComponent,
     MemberListComponent,
     MemberComponent,
+    UserInfoMenuComponent,
   ],
   imports: [
     BrowserModule,
