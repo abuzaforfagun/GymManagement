@@ -9,7 +9,7 @@ namespace GymManagement.Domain.Helpers
 {
     public class PhotoUploader : IPhotoUploader
     {
-        public string UploadPhoto(IFormFile file, string fileUploadDirectory)
+        public string UploadPhoto(IFormFile file, string fileUploadDirectory, string imagePathForWeb)
         {
             try
             {
@@ -21,11 +21,12 @@ namespace GymManagement.Domain.Helpers
                 {
                     string fileName = DateTime.Now.Ticks + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     string fileUploadPath = $"{fileUploadDirectory}/{fileName}";
+                    string relativeWebImagePath = $"{imagePathForWeb}/{fileName}";
                     using (var stream = new FileStream(fileUploadPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
-                    return fileUploadPath;
+                    return relativeWebImagePath;
                 }
             }
             catch (System.Exception ex)

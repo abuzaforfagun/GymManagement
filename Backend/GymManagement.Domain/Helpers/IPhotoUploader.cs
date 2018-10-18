@@ -4,6 +4,6 @@ namespace GymManagement.Domain.Helpers
 {
     public interface IPhotoUploader
     {
-        string UploadPhoto(IFormFile file, string fileUploadDirectory);
+        string UploadPhoto(IFormFile file, string fileUploadDirectory, string imagePathForWeb);
     }
 }

@@ -28,8 +28,9 @@ namespace GymManagement.Controllers
         private readonly IHostingEnvironment hostingEnvironment;
         private readonly IMapper mapper;
         private readonly string webRoot;
-        private readonly string imageDirectory;
+        private readonly string uploadDirectory;
         private readonly string fileUploadDirectoryPath;
+        private readonly string imageDirectory;
         public MemberController(IUnitOfWork repo, IConfiguration configuration, IPhotoUploader photoUploader, IHostingEnvironment hostingEnvironment)
         {
             _repo = repo;
@@ -37,8 +38,9 @@ namespace GymManagement.Controllers
             this.photoUploader = photoUploader;
             this.hostingEnvironment = hostingEnvironment;
             webRoot = configuration["WebRoot"].ToString();
+            uploadDirectory = configuration["UploadDirectory"].ToString();
             imageDirectory = configuration["ImageDirectory"].ToString();
-            fileUploadDirectoryPath = Path.Combine(imageDirectory);
+            fileUploadDirectoryPath = Path.Combine(uploadDirectory);
         }
 
         [HttpPost]
@@ -54,7 +56,7 @@ namespace GymManagement.Controllers
             if (Request.Form.Files.Count > 0)
             {
                 var file = Request.Form.Files[0];
-                var relativePath = photoUploader.UploadPhoto(file, fileUploadDirectoryPath);
+                var relativePath = photoUploader.UploadPhoto(file, fileUploadDirectoryPath, imageDirectory);
                 return Path.Combine(webRoot, relativePath);
             }
 
