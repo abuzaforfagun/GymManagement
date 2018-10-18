@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/core/auth.service';
 import { UserInfoMenuComponent } from './components/user-info-menu/user-info-menu.component';
+import { PaymentComponent } from './components/bill/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UserInfoMenuComponent } from './components/user-info-menu/user-info-men
     MemberListComponent,
     MemberComponent,
     UserInfoMenuComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
