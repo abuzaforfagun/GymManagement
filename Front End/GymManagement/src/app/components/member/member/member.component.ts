@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'member',
@@ -8,9 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MemberComponent implements OnInit {
 
   @Input() data: any;
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
+  }
+
+  payNow(member){
+    console.log(member)
+    this.route.navigateByUrl(`/payment/${member.id}`);
   }
 
 }
