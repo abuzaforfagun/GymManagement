@@ -37,6 +37,7 @@ namespace GymManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDirectoryBrowser();
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddAutoMapper();
             services.AddDbContext<AppDbContext>(options =>
@@ -64,7 +65,10 @@ namespace GymManagement
             }
 
             app.UseStaticFiles();
-            
+            app.UseCors(builder => builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
 
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
