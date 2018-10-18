@@ -1,3 +1,51 @@
-<p>
-  payment works!
-</p>
+<div *ngIf="member" class="row">
+    <div class="col-md-4">
+      <img src="{{member.imageUrl}}" />
+      <h2>{{member.name}}</h2>
+      <table>
+        <tr>
+          <th>Last Payment Date</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Mobile</th>
+          <td>{{member.mobile}}</td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td>{{member.address}}</td>
+        </tr>
+        <tr>
+          <th>Joining Date</th>
+          <td>{{member.joiningDate}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-8">
+      <div class = "row">
+        <h2>Pay Now</h2>
+      </div>
+      <div class = "row">
+          <div class="col-md-4">
+              <label>Date</label>
+              <input [(ngModel)] = "billingDate" type="date" class="form-control" placeholder="Date" />
+            </div>
+            <div class="col-md-4">
+              <label>Amount</label>
+              <input [(ngModel)] = "billingAmount" type="text" class="form-control datetime" placeholder="Amount" />
+            </div>
+            <div class = "col-md-4">
+              <label></label><br/>
+              <button (click) = "payNow(member)">Pay Now</button>
+            </div>
+      </div>
+      <div *ngIf="isBillingComplete" class ="row">
+        <hr/>
+        <span class = "information">Payment Successful</span>
+        <button class = "btn btn-primary">Print Reciept</button>
+      </div>
+    </div>
+</div>
+<div *ngIf="!member">
+  Loading...
+</div>
