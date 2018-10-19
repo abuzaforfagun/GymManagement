@@ -14,6 +14,6 @@ export class UserInfoMenuComponent implements OnInit {
   }
 
   onLoggedout(){
-    this.authService.isAuthenticate = false;
+    this.authService.clearAuthentication();
   }
 }

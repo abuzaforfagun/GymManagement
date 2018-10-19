@@ -1,8 +1,8 @@
 ﻿namespace GymManagement.Domain.Repositories
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork1
     {
         IMemberRepository MemberRepository { get; }
-        IUserRepository UserRepository { get; }
+        IUserRepository UserRepository { get; set; }
     }
 }
