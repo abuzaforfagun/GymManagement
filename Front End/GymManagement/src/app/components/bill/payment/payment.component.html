@@ -1,25 +1,7 @@
 <div *ngIf="member" class="row">
     <div class="col-md-4">
       <userimage img="{{member.imageUrl}}"></userimage>
-      <h2>{{member.name}}</h2>
-      <table>
-        <tr>
-          <th>Last Payment Date:</th>
-          <td><span *ngIf="member.lastPayment">{{member.lastPayment.date | date}}</span></td>
-        </tr>
-        <tr>
-          <th>Mobile</th>
-          <td>{{member.mobile}}</td>
-        </tr>
-        <tr>
-          <th>Address</th>
-          <td>{{member.address}}</td>
-        </tr>
-        <tr>
-          <th>Joining Date</th>
-          <td>{{member.joiningDate | date}}</td>
-        </tr>
-      </table>
+      <member-info [data] = "member"></member-info>
     </div>
     <div class="col-md-8">
       <div class = "row">
@@ -43,6 +25,10 @@
         <hr/>
         <span class = "information">Payment Successful</span>
         <button class = "btn btn-primary">Print Reciept</button>
+      </div>
+      <div class = "row">
+        <h2>Billing History</h2>
+
       </div>
     </div>
 </div>
