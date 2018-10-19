@@ -4,8 +4,8 @@
       <h2>{{member.name}}</h2>
       <table>
         <tr>
-          <th>Last Payment Date</th>
-          <td></td>
+          <th>Last Payment Date:</th>
+          <td><span *ngIf="member.lastPayment">{{member.lastPayment.date | date}}</span></td>
         </tr>
         <tr>
           <th>Mobile</th>

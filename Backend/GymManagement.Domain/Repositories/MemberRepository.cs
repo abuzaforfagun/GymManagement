@@ -6,6 +6,7 @@ using AutoMapper;
 using GenericServices;
 using GymManagement.Domain.Models;
 using GymManagement.Domain.Models.Presistance;
+using GymManagement.Domain.Models.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,14 +22,14 @@ namespace GymManagement.Domain.Repositories
         }
 
 
-        public IEnumerable<Member> Get()
+        public IEnumerable<MemberResources> Get()
         {
-            return service.ReadManyNoTracked<Member>();
+            return service.ReadManyNoTracked<MemberResources>().Include(m => m.Bills);
         }
 
-        public Member Get(int id)
+        public MemberResources Get(int id)
         {
-            return service.ReadSingle<Member>(id);
+            return service.ReadSingle<MemberResources>(id);
 
         }
 
@@ -59,6 +60,7 @@ namespace GymManagement.Domain.Repositories
 
         public void AddBill(int memberId, Bill bill)
         {
+            bill.UpdateDate = DateTime.Now;
             var member = Get(memberId);
             member.Bills.Add(bill);
             service.UpdateAndSave(member);

@@ -5,8 +5,8 @@
   <div class="col-md-6">
     <table>
       <tr>
-        <th>Last Payment Date</th>
-        <td></td>
+        <th>Last Payment Date:</th>
+        <td><span *ngIf="data.lastPayment">{{data.lastPayment.date | date}}</span></td>
       </tr>
       <tr>
         <th>Name</th>
