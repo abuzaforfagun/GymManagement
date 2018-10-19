@@ -10,6 +10,7 @@ using GymManagement.Domain.Helpers;
 using GymManagement.Domain.Models;
 using GymManagement.Domain.Models.Presistance;
 using GymManagement.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -63,6 +64,7 @@ namespace GymManagement.Controllers
             return string.Empty;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {

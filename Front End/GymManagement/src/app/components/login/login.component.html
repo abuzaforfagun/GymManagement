@@ -6,10 +6,10 @@
         <h1>Speed Gym</h1>
           <div class="form-content">
             <div class="form-group">
-              <input type="text" [(ngModel)] = "username" class="form-control input-underline input-lg" name="txtUsername" placeholder="Email">
+              <input type="text" [(ngModel)] = "user.username" class="form-control input-underline input-lg" name="txtUsername" placeholder="Email">
             </div>
             <div class="form-group">
-              <input type="password" [(ngModel)] = "password"  class="form-control input-underline input-lg" name="txtPassword" placeholder="Password">
+              <input type="password" [(ngModel)] = "user.password"  class="form-control input-underline input-lg" name="txtPassword" placeholder="Password">
             </div>
           </div>
           <button class="btn rounded-btn" (click)="onLoggedin()"> Log in </button>
