@@ -27,15 +27,18 @@ export class PaymentComponent implements OnInit {
   }
 
   payNow() {
-    const bill = {
+    let bill;
+    bill = {
       date: this.billingDate,
       amount: this.billingAmount
     }
+    console.log(this.member);
     this.billService.pay(this.member.id, bill).subscribe(data=>{
       this.billingDate = '';
       this.billingAmount = 0;
       this.isBillingComplete = true;
-      console.log(this.isBillingComplete)
+      bill.updateDate = new Date();
+      this.member.bills.push(bill);
     })
   }
 }

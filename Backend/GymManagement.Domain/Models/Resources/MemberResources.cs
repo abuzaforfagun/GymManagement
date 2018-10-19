@@ -16,7 +16,7 @@ namespace GymManagement.Domain.Models.Resources
 
         public Bill LastPayment
         {
-            get { return Bills.OrderBy(b => b.Date).Take(1).FirstOrDefault(); }
+            get { return Bills.OrderByDescending(b => b.Date).Take(1).FirstOrDefault(); }
         }
         public MemberStatus Status { get; set; }
     }

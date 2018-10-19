@@ -22,13 +22,26 @@
             </div>
       </div>
       <div *ngIf="isBillingComplete" class ="row">
-        <hr/>
+        <hr/><br/>
         <span class = "information">Payment Successful</span>
         <button class = "btn btn-primary">Print Reciept</button>
       </div>
       <div class = "row">
-        <h2>Billing History</h2>
-
+        <div class = "col-md-12">
+            <br/>
+            <h2>Billing History</h2><br/>
+            <table class ="table">
+              <tr>
+                <th>Payment Month</th>
+                <th>Payment Date</th>
+              </tr>
+              <tr *ngFor = "let bill of member.bills">
+                <td>{{bill.date | date:'MMMM y'}}</td>
+                <td>{{bill.updateDate | date}}</td>
+              </tr>
+            </table>
+        </div>
+        
       </div>
     </div>
 </div>
