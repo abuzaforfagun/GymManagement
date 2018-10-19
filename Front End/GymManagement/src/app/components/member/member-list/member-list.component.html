@@ -1,3 +1,15 @@
+<div class="row padding_down">
+  <div class="col-md-10">
+    <input type="text" [(ngModel)]="search" class="input form-control" placeholder="Searh by mobile number...">
+  </div>
+  <div class="col-md-2">
+    <button *ngIf="!isSearchButtonClicked" (click)="searchNow()" class="btn btn-primary">Search Now</button>
+    <button *ngIf="isSearchButtonClicked" (click)="clearSearch()" class="btn btn-primary">Clear</button>
+  </div>
+</div>
 <div class="single_user" *ngFor="let user of userList">
-  <member [data] = "user"></member>
+  <member [data]="user"></member>
+</div>
+<div *ngIf="userList.length === 0" class="row">
+  <label>No member found.</label>
 </div>

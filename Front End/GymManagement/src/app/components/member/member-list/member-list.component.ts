@@ -10,14 +10,31 @@ import { MemberService } from '../../../services/member.service';
 export class MemberListComponent implements OnInit {
 
   userList: any;
-  constructor(private memberService: MemberService) { 
+  _userList: any;
+  search: '';
+  isSearchButtonClicked = false;
+  constructor(private memberService: MemberService) {
     this.userList = [];
   }
 
   ngOnInit() {
-    this.memberService.getAll().subscribe(data=>{
+    this.memberService.getAll().subscribe(data => {
       this.userList = data;
     })
   }
 
+  searchNow() {
+    if(!this.search) {
+      return;
+    }
+    this.isSearchButtonClicked = true;
+    this._userList = this.userList;
+    this.userList = this.userList.filter(u => u.mobile == this.search);
+  }
+
+  clearSearch() {
+    this.search = '';
+    this.userList = this._userList;
+    this.isSearchButtonClicked = false;
+  }
 }
