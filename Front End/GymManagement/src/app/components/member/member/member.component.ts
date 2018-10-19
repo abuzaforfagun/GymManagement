@@ -14,9 +14,8 @@ export class MemberComponent implements OnInit {
   ngOnInit() {
   }
 
-  payNow(member){
+  payNow(member) {
     console.log(member)
     this.route.navigateByUrl(`/payment/${member.id}`);
   }
-
 }
