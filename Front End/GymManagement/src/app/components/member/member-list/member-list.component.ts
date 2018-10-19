@@ -18,9 +18,7 @@ export class MemberListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.memberService.getAll().subscribe(data => {
-      this.userList = data;
-    })
+    this.memberService.getAll();
   }
 
   searchNow() {
@@ -28,13 +26,13 @@ export class MemberListComponent implements OnInit {
       return;
     }
     this.isSearchButtonClicked = true;
-    this._userList = this.userList;
-    this.userList = this.userList.filter(u => u.mobile == this.search);
+    this._userList = this.memberService.allMembers;
+    this.memberService.allMembers = this.userList.filter(u => u.mobile == this.search);
   }
 
   clearSearch() {
     this.search = '';
-    this.userList = this._userList;
+    this.memberService.allMembers = this._userList;
     this.isSearchButtonClicked = false;
   }
 }

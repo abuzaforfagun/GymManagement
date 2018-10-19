@@ -6,13 +6,20 @@ import { HttpService } from './core/http.service';
 })
 export class MemberService {
 
+  allMembers: any;
   constructor(private httpService: HttpService) { }
 
-  getAll(){
-    return this.httpService.get("http://localhost:50187/api/member");
+  getAll() {
+    return this.httpService.get("http://localhost:50187/api/member").subscribe(data => {
+      this.allMembers = data;
+    })
   }
 
-  get(id){
+  get(id) {
     return this.httpService.get(`http://localhost:50187/api/member/${id}`);
+  }
+
+  unsubscribe(id) {
+    return this.httpService.post(`http://localhost:50187/api/member/${id}`, {});
   }
 }

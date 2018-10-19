@@ -5,6 +5,7 @@ using System.Text;
 using AutoMapper;
 using GenericServices;
 using GymManagement.Domain.Models;
+using GymManagement.Domain.Models.Enums;
 using GymManagement.Domain.Models.Presistance;
 using GymManagement.Domain.Models.Resources;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,8 @@ namespace GymManagement.Domain.Repositories
 
         public IEnumerable<MemberResources> Get()
         {
-            return service.ReadManyNoTracked<MemberResources>().Include(m => m.Bills);
+            return service.ReadManyNoTracked<MemberResources>().Include(m => m.Bills)
+                .Where(m => m.Status == MemberStatus.Registered);
         }
 
         public MemberResources Get(int id)
@@ -56,6 +58,13 @@ namespace GymManagement.Domain.Repositories
         public void Delete(Member member)
         {
             service.DeleteAndSave<Member>(member.Id);
+        }
+
+        public void Unsubscribe(int id)
+        {
+            var member = service.ReadSingle<Member>(m => m.Id == id);
+            member.Status = MemberStatus.Resigned;
+            service.UpdateAndSave(member);
         }
 
         public void AddBill(int memberId, Bill bill)

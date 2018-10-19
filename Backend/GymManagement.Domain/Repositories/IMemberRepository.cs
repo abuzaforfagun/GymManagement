@@ -13,6 +13,7 @@ namespace GymManagement.Domain.Repositories
         void Update(MemberResourceForUpdate member);
         void Delete(int id);
         void Delete(Member member);
+        void Unsubscribe(int id);
         void AddBill(int memberId, Bill bill);
         Member GetDeatils(int id);
         List<Bill> GetBills(int memberId);

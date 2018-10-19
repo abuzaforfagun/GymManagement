@@ -7,9 +7,9 @@
     <button *ngIf="isSearchButtonClicked" (click)="clearSearch()" class="btn btn-primary">Clear</button>
   </div>
 </div>
-<div class="single_user" *ngFor="let user of userList">
+<div class="single_user" *ngFor="let user of memberService.allMembers">
   <member [data]="user"></member>
 </div>
-<div *ngIf="userList.length === 0" class="row">
+<div *ngIf="memberService.allMembers.length === 0" class="row">
   <label>No member found.</label>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { MemberService } from '../../../services/member.service';
 
 @Component({
   selector: 'member',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class MemberComponent implements OnInit {
 
   @Input() data: any;
-  constructor(private route: Router) { }
+  constructor(private route: Router,
+    private memberService: MemberService) { }
 
   ngOnInit() {
   }
@@ -17,5 +19,13 @@ export class MemberComponent implements OnInit {
   payNow(member) {
     console.log(member)
     this.route.navigateByUrl(`/payment/${member.id}`);
+  }
+
+  delete(member) {
+    if (confirm(`Delete ${member.name}?`)) {
+      this.memberService.unsubscribe(member.id).subscribe(data => {
+        this.memberService.allMembers = this.memberService.allMembers.filter(m=>m.id !== member.id);
+      })
+    }
   }
 }

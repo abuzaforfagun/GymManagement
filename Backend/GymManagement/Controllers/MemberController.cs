@@ -111,7 +111,12 @@ namespace GymManagement.Controllers
             return Ok();
         }
 
-
+        [HttpPost("{id}")]
+        public IActionResult Unsubscribe(int id)
+        {
+            _repo.MemberRepository.Unsubscribe(id);
+            return Ok();
+        }
         [HttpPost("{id}/Bill")]
         public IActionResult AddBill(int id, [FromBody] Bill bill)
         {
