@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GymManagement.Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180926210900_AlterBill_Rename_BillingDateToUpdateDate")]
-    partial class AlterBill_Rename_BillingDateToUpdateDate
+    [Migration("20181019205713_DropUsersTbl")]
+    partial class DropUsersTbl
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,6 +26,8 @@ namespace GymManagement.Domain.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
 
                     b.Property<DateTime>("Date");
 
