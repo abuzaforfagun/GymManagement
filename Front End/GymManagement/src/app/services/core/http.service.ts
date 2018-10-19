@@ -20,7 +20,7 @@ export class HttpService {
     return Observable.throw("Failed to handle the request!");
 
   }
-  public get(url, params) {
+  public get(url) {
     return this.http.get(url, this.getHttpOptions())
       .map(res => res)
       .catch((err) => {

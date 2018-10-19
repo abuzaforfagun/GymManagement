@@ -9,7 +9,7 @@ export class MemberService {
   constructor(private httpService: HttpService) { }
 
   getAll(){
-    return this.httpService.get("http://localhost:50187/api/member",{});
+    return this.httpService.get("http://localhost:50187/api/member");
   }
 
   get(id){
