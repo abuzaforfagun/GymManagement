@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/core/auth.service';
 import { UserInfoMenuComponent } from './components/user-info-menu/user-info-menu.component';
 import { PaymentComponent } from './components/bill/payment/payment.component';
+import { UserimageComponent } from './components/layout/core/userimage/userimage.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PaymentComponent } from './components/bill/payment/payment.component';
     MemberComponent,
     UserInfoMenuComponent,
     PaymentComponent,
+    UserimageComponent,
   ],
   imports: [
     BrowserModule,
