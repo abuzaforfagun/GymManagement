@@ -123,6 +123,8 @@ namespace GymManagement.Controllers
             _repo.MemberRepository.AddBill(id, bill);
             return Ok();
         }
+
+
     }
 
 }

@@ -18,6 +18,7 @@ import { UserInfoMenuComponent } from './components/user-info-menu/user-info-men
 import { PaymentComponent } from './components/bill/payment/payment.component';
 import { UserimageComponent } from './components/layout/core/userimage/userimage.component';
 import { MemberInfoComponent } from './components/member/member/member-info/member-info.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MemberInfoComponent } from './components/member/member/member-info/memb
     PaymentComponent,
     UserimageComponent,
     MemberInfoComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
