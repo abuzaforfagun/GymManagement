@@ -17,5 +17,6 @@ namespace GymManagement.Domain.Repositories
         void AddBill(int memberId, Bill bill);
         Member GetDeatils(int id);
         List<Bill> GetBills(int memberId);
+        IList<MemberResourceForUnpaidBill> GetUnPaidBills();
     }
 }

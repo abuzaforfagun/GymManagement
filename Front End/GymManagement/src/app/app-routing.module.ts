@@ -4,11 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { MemberListComponent } from './components/member/member-list/member-list.component';
 import { PaymentComponent } from './components/bill/payment/payment.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'members', component: MemberListComponent },
   { path: 'payment/:id', component: PaymentComponent },
+  { path: 'dashboard', component: DashboardComponent },
   // { path: 'stories/form', component: StoryFormComponent },
   // { path: 'stories/form/:id', component: StoryFormComponent },
   // { path: 'login', component: LoginComponent },

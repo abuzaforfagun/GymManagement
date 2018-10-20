@@ -1,0 +1,16 @@
+<div *ngIf="dashboardService.unpaidBillForMoreThanOneMonth">
+  <h2>Bill remaining for more than one month ({{dashboardService.unpaidBillForMoreThanOneMonth.length}})</h2>
+  <hr />
+  <div class="single_user" *ngFor="let user of dashboardService.unpaidBillForMoreThanOneMonth">
+    <member [data]="user"></member>
+    <hr />
+  </div>
+</div>
+<div *ngIf="dashboardService.unpaidBillForOneMonth">
+  <h2>Bill remaining for one month ({{dashboardService.unpaidBillForOneMonth.length}})</h2>
+  <hr />
+  <div class="single_user" *ngFor="let user of dashboardService.unpaidBillForOneMonth">
+    <member [data]="user"></member>
+    <hr />
+  </div>
+</div>
