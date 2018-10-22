@@ -1,3 +1,6 @@
+<div class = "row">
+  <a  [routerLink]="['/members/form']" [routerLinkActive]="['router-link-active']" class = "btn btn-primary">Add Member</a>
+</div>
 <div *ngIf="dashboardService.unpaidBillForMoreThanOneMonth">
   <h2>Bill remaining for more than one month ({{dashboardService.unpaidBillForMoreThanOneMonth.length}})</h2>
   <hr />
@@ -13,4 +16,7 @@
     <member [data]="user"></member>
     <hr />
   </div>
+</div>
+<div *ngIf = "!dashboardService.unpaidBillForMoreThanOneMonth && !dashboardService.unpaidBillForOneMonth">
+  Loading...
 </div>
