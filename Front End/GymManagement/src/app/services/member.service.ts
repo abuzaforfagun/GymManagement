@@ -22,4 +22,8 @@ export class MemberService {
   unsubscribe(id) {
     return this.httpService.post(`http://localhost:50187/api/member/${id}`, {});
   }
+
+  add(member) {
+    console.log(member);
+  }
 }

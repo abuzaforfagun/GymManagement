@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http2SecureServer } from 'http2';
 import { HttpService } from './core/http.service';
 
 @Injectable({

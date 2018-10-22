@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -28,12 +28,18 @@ export class HttpService {
       });
   }
 
-  public post(url, params) {
-    return this.http.post(url, params, this.getHttpOptions())
+  public post(url, params, isFormdate = false) {
+    return this.http.post(url, params, this.getHttpOptions(isFormdate))
       .map(res => res);
   }
+  
+  public postData(url, params) {
+    return this.http.post(url, params);
+  }
+  
 
   login(user): Promise<any> {
+    
     return new Promise((resolve) => {
       this.http.post('http://localhost:50187/api/auth/login', user)
         .subscribe(data => {
@@ -42,6 +48,7 @@ export class HttpService {
         }, err => resolve(false));
     });
   }
+
 
   private getHttpOptions() {
     return {

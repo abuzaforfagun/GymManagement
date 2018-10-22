@@ -19,6 +19,8 @@ import { PaymentComponent } from './components/bill/payment/payment.component';
 import { UserimageComponent } from './components/layout/core/userimage/userimage.component';
 import { MemberInfoComponent } from './components/member/member/member-info/member-info.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MemberFormComponent } from './components/member/member-form/member-form.component';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 @NgModule({
   declarations: [
@@ -33,13 +35,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     UserimageComponent,
     MemberInfoComponent,
     DashboardComponent,
+    MemberFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule.forRoot(),
+    NgDatepickerModule,
+    NgbModule.forRoot()
   ],
   providers: [MemberService, HttpService, AuthService],
   bootstrap: [AppComponent]

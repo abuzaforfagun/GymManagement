@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -44,7 +45,7 @@ namespace GymManagement.Controllers
             fileUploadDirectoryPath = Path.Combine(uploadDirectory);
         }
 
-        [HttpPost]
+        [HttpPost, DisableRequestSizeLimit]
         public IActionResult Post([FromForm] MemberResourceForSave item)
         {
             item.ImageUrl = UploadPhoto();

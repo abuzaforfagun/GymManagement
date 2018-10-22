@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/core/http.service';
 import { MemberService } from '../../../services/member.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-member-list',
@@ -13,7 +14,8 @@ export class MemberListComponent implements OnInit {
   _userList: any;
   search: '';
   isSearchButtonClicked = false;
-  constructor(private memberService: MemberService) {
+  constructor(private memberService: MemberService,
+              private router: Router) {
     this.userList = [];
   }
 
@@ -34,5 +36,9 @@ export class MemberListComponent implements OnInit {
     this.search = '';
     this.memberService.allMembers = this._userList;
     this.isSearchButtonClicked = false;
+  }
+
+  gotoAddPage() {
+    this.router.navigateByUrl("members/form");
   }
 }
