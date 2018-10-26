@@ -1,5 +1,5 @@
 <table>
-  <tr>
+  <tr *ngIf = "isDisplayLastPaymentDate">
     <th>Last Payment Date:</th>
     <td><span *ngIf="data.lastPayment">{{data.lastPayment.date | date}}</span></td>
   </tr>
