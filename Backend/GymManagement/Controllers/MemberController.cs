@@ -74,6 +74,13 @@ namespace GymManagement.Controllers
         }
 
         [HttpGet]
+        [Route("archive")]
+        public IActionResult GetArchive()
+        {   
+            return Ok(_repo.MemberRepository.Get(isArchive: true));
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public IActionResult Get(int id)
         {
@@ -105,6 +112,21 @@ namespace GymManagement.Controllers
             return Ok(item);
         }
 
+        [HttpPost("{id}/rejoin")]
+        public IActionResult ReJoin(int id)
+        {
+            if (_repo.MemberRepository.Rejoin(id) == true)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        private bool removeItem(Bill obj)
+        {
+            throw new NotImplementedException();
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -112,7 +134,7 @@ namespace GymManagement.Controllers
             return Ok();
         }
 
-        [HttpPost("{id}")]
+        [HttpPost("{id}/unsubscribe")]
         public IActionResult Unsubscribe(int id)
         {
             _repo.MemberRepository.Unsubscribe(id);

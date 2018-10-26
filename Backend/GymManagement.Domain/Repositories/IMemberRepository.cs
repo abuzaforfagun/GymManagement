@@ -7,13 +7,14 @@ namespace GymManagement.Domain.Repositories
 {
     public interface IMemberRepository
     {
-        IEnumerable<MemberResources> Get();
+        IEnumerable<MemberResources> Get(bool isArchive = false);
         MemberResources Get(int id);
         void Add(MemberResourceForSave member);
         void Update(MemberResourceForUpdate member);
         void Delete(int id);
         void Delete(Member member);
         void Unsubscribe(int id);
+        bool Rejoin(int id);
         void AddBill(int memberId, Bill bill);
         Member GetDeatils(int id);
         List<Bill> GetBills(int memberId);

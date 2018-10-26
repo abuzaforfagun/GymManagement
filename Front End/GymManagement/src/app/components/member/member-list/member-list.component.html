@@ -1,6 +1,7 @@
 <div class = "row padding_down">
   <div class = "col-md-12">
-    <button class = "btn btn-primary" (click) = "gotoAddPage()">Add</button>
+    <button class = "btn btn-primary" (click) = "gotoAddPage()">Add Member</button>
+    <button class = "btn btn-primary" (click) = "gotoArchiveListPage()">Archive List</button>
   </div>
 </div>
 <div class="row padding_down">
@@ -16,7 +17,7 @@
   Loading..
 </div>
 <div class="single_user" *ngFor="let user of memberService.allMembers">
-  <member [data]="user"></member>
+  <member [isArchive] = "isArchive" [data]="user"></member>
 </div>
 <div *ngIf="memberService.allMembers && memberService.allMembers.length === 0" class="row">
   <label>No member found.</label>

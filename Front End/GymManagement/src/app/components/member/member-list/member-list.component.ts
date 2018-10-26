@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/core/http.service';
 import { MemberService } from '../../../services/member.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-member-list',
@@ -14,17 +14,27 @@ export class MemberListComponent implements OnInit {
   _userList: any;
   search: '';
   isSearchButtonClicked = false;
+  isArchive = false;
   constructor(private memberService: MemberService,
-              private router: Router) {
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.userList = [];
   }
 
   ngOnInit() {
-    this.memberService.getAll();
+    let action;
+    this.activatedRoute.params.subscribe(params => {
+      action = params['action'];
+      if (action === 'archive') {
+        this.isArchive = true;
+      }
+    }
+    );
+    this.memberService.getAll(this.isArchive);
   }
 
   searchNow() {
-    if(!this.search) {
+    if (!this.search) {
       return;
     }
     this.isSearchButtonClicked = true;
@@ -40,5 +50,9 @@ export class MemberListComponent implements OnInit {
 
   gotoAddPage() {
     this.router.navigateByUrl("members/form");
+  }
+
+  gotoArchiveListPage(){
+    this.router.navigateByUrl("members/archive");
   }
 }

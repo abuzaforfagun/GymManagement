@@ -10,6 +10,7 @@ import { MemberFormComponent } from './components/member/member-form/member-form
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'members', component: MemberListComponent },
+  { path: 'members/:action', component: MemberListComponent },
   { path: 'members/form', component: MemberFormComponent },
   { path: 'payment/:id', component: PaymentComponent },
   { path: 'dashboard', component: DashboardComponent },

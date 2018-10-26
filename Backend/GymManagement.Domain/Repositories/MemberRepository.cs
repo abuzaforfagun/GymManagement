@@ -21,10 +21,11 @@ namespace GymManagement.Domain.Repositories
         }
 
 
-        public IEnumerable<MemberResources> Get()
+        public IEnumerable<MemberResources> Get(bool isArchive = false)
         {
+            MemberStatus status = isArchive ? MemberStatus.Resigned : MemberStatus.Registered;
             return service.ReadManyNoTracked<MemberResources>().Include(m => m.Bills)
-                .Where(m => m.Status == MemberStatus.Registered);
+                .Where(m => m.Status == status);
         }
 
         public MemberResources Get(int id)
@@ -48,6 +49,11 @@ namespace GymManagement.Domain.Repositories
             service.UpdateAndSave(member);
         }
 
+        private void Update(MemberResources member)
+        {
+            service.UpdateAndSave(member);
+        }
+
         public void Delete(int id)
         {
             service.DeleteAndSave<Member>(id);
@@ -63,6 +69,20 @@ namespace GymManagement.Domain.Repositories
             Member member = service.ReadSingle<Member>(m => m.Id == id);
             member.Status = MemberStatus.Resigned;
             service.UpdateAndSave(member);
+        }
+
+        public bool Rejoin(int id)
+        {
+            var member = Get(id);
+            if (member == null)
+            {
+                return false;
+            }
+            member.Bills.RemoveAll((bill) => { return true; });
+            member.JoiningDate = DateTime.Now;
+            member.Status = MemberStatus.Registered;
+            Update(member);
+            return true;
         }
 
         public void AddBill(int memberId, Bill bill)

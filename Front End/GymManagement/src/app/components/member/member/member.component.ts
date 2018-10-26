@@ -10,6 +10,7 @@ import { MemberService } from '../../../services/member.service';
 export class MemberComponent implements OnInit {
 
   @Input() data: any;
+  @Input() isArchive = false;
   constructor(private route: Router,
     private memberService: MemberService) { }
 
@@ -27,5 +28,14 @@ export class MemberComponent implements OnInit {
         this.memberService.allMembers = this.memberService.allMembers.filter(m=>m.id !== member.id);
       })
     }
+  }
+
+  rejoin(member) {
+    if (confirm(`Rejoin ${member.name}?`)) {
+      this.memberService.rejoin(member.id).subscribe(()=>{
+        this.memberService.allMembers = this.memberService.allMembers.filter(m=>m.id !== member.id);
+      });
+    }
+    
   }
 }
