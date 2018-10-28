@@ -30,15 +30,24 @@ export class HttpService {
 
   public post(url, params, isFormdate = false) {
     return this.http.post(url, params, this.getHttpOptions())
-      .map(res => res);
+      .map(res => res)
+      .catch((err) => {
+        throw this.handleError(err);
+      });
   }
 
   public postData(url, params) {
-    return this.http.post(url, params);
+    return this.http.post(url, params)
+      .catch((err) => {
+        throw this.handleError(err);
+      });
   }
 
   public putData(url, params) {
-    return this.http.put(url, params);
+    return this.http.put(url, params)
+      .catch((err) => {
+        throw this.handleError(err);
+      });
   }
 
 

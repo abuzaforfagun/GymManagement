@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/core/auth.service';
 import { HttpService } from '../../services/core/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,13 @@ export class LoginComponent implements OnInit {
 
   user = {};
   loginMessage: any;
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService,
+              private router: Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem('token')){
+      this.router.navigateByUrl('dashboard');
+    }
   }
 
   onLoggedin(){

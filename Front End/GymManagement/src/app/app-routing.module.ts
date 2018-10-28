@@ -8,6 +8,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MemberFormComponent } from './components/member/member-form/member-form.component';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'members', component: MemberListComponent },
   { path: 'members/:action', component: MemberListComponent },

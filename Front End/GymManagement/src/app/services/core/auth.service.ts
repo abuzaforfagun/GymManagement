@@ -14,10 +14,7 @@ export class AuthService {
     }
   }
   getToken() {
-    if(!this.token){
-      this.token = localStorage.getItem('token');
-    }
-    return this.token;
+    return localStorage.getItem('token');
   }
 
   getStatus() {
