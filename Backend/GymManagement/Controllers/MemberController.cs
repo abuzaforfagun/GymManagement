@@ -15,6 +15,7 @@ using System.IO;
 namespace GymManagement.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class MemberController : ControllerBase
     {
@@ -59,7 +60,6 @@ namespace GymManagement.Controllers
             return string.Empty;
         }
 
-        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
