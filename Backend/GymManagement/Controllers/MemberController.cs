@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GymManagement.Domain.Helpers;
 using GymManagement.Domain.Models;
 using GymManagement.Domain.Models.Presistance;
@@ -16,7 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Remotion.Linq.Utilities;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace GymManagement.Controllers
 {
@@ -57,8 +51,8 @@ namespace GymManagement.Controllers
         {
             if (Request.Form.Files.Count > 0)
             {
-                var file = Request.Form.Files[0];
-                var relativePath = photoUploader.UploadPhoto(file, fileUploadDirectoryPath, imageDirectory);
+                IFormFile file = Request.Form.Files[0];
+                string relativePath = photoUploader.UploadPhoto(file, fileUploadDirectoryPath, imageDirectory);
                 return Path.Combine(webRoot, relativePath);
             }
 
@@ -69,14 +63,14 @@ namespace GymManagement.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var list = Ok(_repo.MemberRepository.Get());
+            OkObjectResult list = Ok(_repo.MemberRepository.Get());
             return list;
         }
 
         [HttpGet]
         [Route("archive")]
         public IActionResult GetArchive()
-        {   
+        {
             return Ok(_repo.MemberRepository.Get(isArchive: true));
         }
 
@@ -84,7 +78,7 @@ namespace GymManagement.Controllers
         [Route("{id}")]
         public IActionResult Get(int id)
         {
-            var item = _repo.MemberRepository.Get(id);
+            Domain.Models.Resources.MemberResources item = _repo.MemberRepository.Get(id);
             return Ok(item);
         }
 
@@ -92,7 +86,7 @@ namespace GymManagement.Controllers
         [Route("{id}/details")]
         public IActionResult GetMemberDetails(int id)
         {
-            var item = _repo.MemberRepository.GetDeatils(id);
+            Member item = _repo.MemberRepository.GetDeatils(id);
             return Ok(item);
         }
 
@@ -100,15 +94,23 @@ namespace GymManagement.Controllers
         [Route("{id}/bill")]
         public IActionResult GetMemberBills(int id)
         {
-            var item = _repo.MemberRepository.GetBills(id);
+            List<Bill> item = _repo.MemberRepository.GetBills(id);
             return Ok(item);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, MemberResourceForUpdate member)
+        public IActionResult Put(int id, [FromForm] MemberResourceForUpdate member)
         {
+            if (_repo.MemberRepository.Get(id) == null)
+            {
+                return BadRequest();
+            }
+            if (Request.Form.Files.Count > 0)
+            {
+                member.ImageUrl = UploadPhoto();
+            }
             _repo.MemberRepository.Update(member);
-            var item = _repo.MemberRepository.Get(id);
+            Domain.Models.Resources.MemberResources item = _repo.MemberRepository.Get(id);
             return Ok(item);
         }
 

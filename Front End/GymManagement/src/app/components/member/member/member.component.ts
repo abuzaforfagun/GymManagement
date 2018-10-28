@@ -38,4 +38,8 @@ export class MemberComponent implements OnInit {
     }
     
   }
+
+  editMember(member) {
+    this.route.navigateByUrl(`members/form/${member.id}`);
+  }
 }

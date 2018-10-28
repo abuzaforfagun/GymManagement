@@ -19,6 +19,14 @@ export class MemberService {
     })
   }
 
+  add(member) {
+    return this.httpService.postData("http://localhost:50187/api/member/", member);
+  }
+
+  update(id, member) {
+    return this.httpService.putData(`http://localhost:50187/api/member/${id}`, member);
+  }
+
   get(id) {
     return this.httpService.get(`http://localhost:50187/api/member/${id}`);
   }
@@ -29,9 +37,5 @@ export class MemberService {
 
   rejoin(id) {
     return this.httpService.post(`http://localhost:50187/api/member/${id}/rejoin`, {});
-  }
-
-  add(member) {
-    console.log(member);
   }
 }

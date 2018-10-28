@@ -12,6 +12,7 @@ const appRoutes: Routes = [
   { path: 'members', component: MemberListComponent },
   { path: 'members/:action', component: MemberListComponent },
   { path: 'members/form', component: MemberFormComponent },
+  { path: 'members/form/:id', component: MemberFormComponent },
   { path: 'payment/:id', component: PaymentComponent },
   { path: 'dashboard', component: DashboardComponent },
   // { path: 'stories/form', component: StoryFormComponent },

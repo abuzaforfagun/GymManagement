@@ -1,5 +1,6 @@
 <h2>Member Form</h2>
 <hr />
+<div class="row"><label for="" class="information">{{message}}</label></div>
 <div class="row">
   <div class="col-md-8">
     <div class="form-group">
@@ -20,7 +21,7 @@
         <textarea class="form-control" [(ngModel)] = "member.address"></textarea>
       </div>
     </div>
-    <div class="form-group">
+    <div *ngIf = "!isEditForm" class="form-group">
       <label for="">Joining Date</label>
       <ng-datepicker [(ngModel)]="member.joiningDate" ></ng-datepicker>
 

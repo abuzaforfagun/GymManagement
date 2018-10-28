@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 export class HttpService {
 
   constructor(private http: HttpClient,
-              private authService: AuthService) { }
+    private authService: AuthService) { }
 
   handleError(err) {
     if (err.status === 401) {
@@ -32,14 +32,18 @@ export class HttpService {
     return this.http.post(url, params, this.getHttpOptions())
       .map(res => res);
   }
-  
+
   public postData(url, params) {
     return this.http.post(url, params);
   }
-  
+
+  public putData(url, params) {
+    return this.http.put(url, params);
+  }
+
 
   login(user): Promise<any> {
-    
+
     return new Promise((resolve) => {
       this.http.post('http://localhost:50187/api/auth/login', user)
         .subscribe(data => {
