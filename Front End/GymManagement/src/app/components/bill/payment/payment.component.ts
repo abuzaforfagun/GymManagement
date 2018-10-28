@@ -20,7 +20,7 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit() {
     const params = this.activeRoute.snapshot.params;
-    console.log(params);
+    this.billingDate = new Date();
     this.memberService.get(params.id).subscribe(data => {
       this.member = data;
     })
