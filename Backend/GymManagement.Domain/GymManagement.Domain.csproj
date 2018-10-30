@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20181019205713_DropUsersTbl.cs" />
+    <Compile Remove="Migrations\20181019205713_DropUsersTbl.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="EfCore.GenericServices" Version="1.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.2" />

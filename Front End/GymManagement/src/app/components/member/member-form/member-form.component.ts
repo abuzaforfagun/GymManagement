@@ -28,8 +28,9 @@ export class MemberFormComponent implements OnInit {
         this.isEditForm = true;
         this.member.id = memberId;
         this.memberService.get(memberId).subscribe((data): any => {
-          this.member = data;
-          this.memberImgUrl = data.imageUrl;
+          let _data: any = data;
+          this.member = _data;
+          this.memberImgUrl = _data.imageUrl;
         })
       }
     });

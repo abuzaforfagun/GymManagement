@@ -15,7 +15,7 @@ export class MemberListComponent implements OnInit {
   search: '';
   isSearchButtonClicked = false;
   isArchive = false;
-  constructor(private memberService: MemberService,
+  constructor(public memberService: MemberService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
     this.userList = [];

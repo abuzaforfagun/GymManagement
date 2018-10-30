@@ -8,7 +8,7 @@ import { DashboardService } from '../../services/dashboard.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(public dashboardService: DashboardService) { }
 
   ngOnInit() {
     this.dashboardService.getUnpaidBills();
