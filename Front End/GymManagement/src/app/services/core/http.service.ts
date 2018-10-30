@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class HttpService {
 
+  apiRoot = 'http://speed-gym.azurewebsites.net/api';
   constructor(private http: HttpClient,
     private authService: AuthService) { }
 
@@ -54,7 +55,7 @@ export class HttpService {
   login(user): Promise<any> {
 
     return new Promise((resolve) => {
-      this.http.post('http://localhost:50187/api/auth/login', user)
+      this.http.post(`${this.apiRoot}/auth/login`, user)
         .subscribe(data => {
           this.authService.authenticateUser(data);
           resolve(true);

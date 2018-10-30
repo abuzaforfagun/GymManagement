@@ -5,14 +5,14 @@ import { HttpService } from './core/http.service';
   providedIn: 'root'
 })
 export class MemberService {
-
+  apiRoot = 'http://speed-gym.azurewebsites.net/api';
   allMembers: any;
   constructor(private httpService: HttpService) { }
 
   getAll(isArchive = false) {
-    let api = "http://localhost:50187/api/member";
+    let api = `${this.apiRoot}/member`;
     if(isArchive){
-      api = "http://localhost:50187/api/member/archive"
+      api = `${this.apiRoot}/member/archive`
     }
     return this.httpService.get(api).subscribe(data => {
       this.allMembers = data;
@@ -20,22 +20,22 @@ export class MemberService {
   }
 
   add(member) {
-    return this.httpService.postData("http://localhost:50187/api/member/", member);
+    return this.httpService.postData(`${this.apiRoot}/member`, member);
   }
 
   update(id, member) {
-    return this.httpService.putData(`http://localhost:50187/api/member/${id}`, member);
+    return this.httpService.putData(`${this.apiRoot}/member/${id}`, member);
   }
 
   get(id) {
-    return this.httpService.get(`http://localhost:50187/api/member/${id}`);
+    return this.httpService.get(`${this.apiRoot}/member/${id}`);
   }
 
   unsubscribe(id) {
-    return this.httpService.post(`http://localhost:50187/api/member/${id}/unsubscribe`, {});
+    return this.httpService.post(`${this.apiRoot}/member/${id}/unsubscribe`, {});
   }
 
   rejoin(id) {
-    return this.httpService.post(`http://localhost:50187/api/member/${id}/rejoin`, {});
+    return this.httpService.post(`${this.apiRoot}/member/${id}/rejoin`, {});
   }
 }
