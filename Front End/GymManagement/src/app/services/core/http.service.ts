@@ -38,14 +38,14 @@ export class HttpService {
   }
 
   public postData(url, params) {
-    return this.http.post(url, params)
+    return this.http.post(url, params, this.getHttpOptions())
       .catch((err) => {
         throw this.handleError(err);
       });
   }
 
   public putData(url, params) {
-    return this.http.put(url, params)
+    return this.http.put(url, params, this.getHttpOptions())
       .catch((err) => {
         throw this.handleError(err);
       });
@@ -67,7 +67,7 @@ export class HttpService {
   private getHttpOptions() {
     return {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         'Authorization': `bearer ${this.authService.getToken()}`
       })
     };
