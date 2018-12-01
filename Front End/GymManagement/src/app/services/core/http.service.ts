@@ -8,7 +8,9 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class HttpService {
 
-  apiRoot = 'http://speed-gym.azurewebsites.net/api';
+  // apiRoot = 'http://speed-gym.azurewebsites.net/api';
+
+  apiRoot = 'http://localhost:50187/api';
   constructor(private http: HttpClient,
     private authService: AuthService) { }
 
@@ -22,7 +24,7 @@ export class HttpService {
 
   }
   public get(url) {
-    return this.http.get(url, this.getHttpOptions())
+    return this.http.get(`${this.apiRoot}${url}`, this.getHttpOptions())
       .map(res => res)
       .catch((err) => {
         throw this.handleError(err);
@@ -30,7 +32,7 @@ export class HttpService {
   }
 
   public post(url, params, isFormdate = false) {
-    return this.http.post(url, params, this.getHttpOptions())
+    return this.http.post(`${this.apiRoot}${url}`, params, this.getHttpOptions())
       .map(res => res)
       .catch((err) => {
         throw this.handleError(err);
@@ -38,14 +40,14 @@ export class HttpService {
   }
 
   public postData(url, params) {
-    return this.http.post(url, params, this.getHttpOptions())
+    return this.http.post(`${this.apiRoot}${url}`, params, this.getHttpOptions())
       .catch((err) => {
         throw this.handleError(err);
       });
   }
 
   public putData(url, params) {
-    return this.http.put(url, params, this.getHttpOptions())
+    return this.http.put(`${this.apiRoot}${url}`, params, this.getHttpOptions())
       .catch((err) => {
         throw this.handleError(err);
       });

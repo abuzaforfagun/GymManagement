@@ -7,10 +7,9 @@ import { HttpService } from './core/http.service';
 })
 export class BillService {
 
-  apiRoot = 'http://speed-gym.azurewebsites.net/api';
   constructor(private httpService: HttpService) { }
 
   pay(memberId, bill) {
-    return this.httpService.post(`${this.apiRoot}/member/${memberId}/bill`, bill);
+    return this.httpService.post(`/member/${memberId}/bill`, bill);
   }
 }
