@@ -21,6 +21,7 @@ import { MemberInfoComponent } from './components/member/member/member-info/memb
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MemberFormComponent } from './components/member/member-form/member-form.component';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { DeprecatedDatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { NgDatepickerModule } from 'ng2-datepicker';
     NgDatepickerModule,
     NgbModule.forRoot()
   ],
-  providers: [MemberService, HttpService, AuthService],
+  providers: [MemberService, HttpService, AuthService, DeprecatedDatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

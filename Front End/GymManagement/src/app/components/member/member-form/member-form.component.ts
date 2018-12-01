@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DeprecatedDatePipe } from '@angular/common';
 import { MemberService } from '../../../services/member.service';
 import { HttpService } from '../../../services/core/http.service';
 import { HttpClient } from '@angular/common/http';
@@ -19,7 +19,8 @@ export class MemberFormComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
   constructor(private httpService: HttpService,
     private activatedRoute: ActivatedRoute,
-    private memberService: MemberService) { }
+    private memberService: MemberService,
+    private dataPipe: DeprecatedDatePipe) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -50,6 +51,7 @@ export class MemberFormComponent implements OnInit {
     frmData.append("mobile", this.member.mobile);
     frmData.append("address", this.member.address);
     frmData.append("imageUrl", this.member.imageUrl);
+    frmData.append("joiningDate", this.dataPipe.transform(this.member.joiningDate, 'yyyy-MM-dd'));
     if (!this.isEditForm) {
       this.memberService.add(frmData).subscribe((data) => {
         this.isEditForm = true;
