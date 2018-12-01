@@ -18,25 +18,24 @@ export class MemberComponent implements OnInit {
   }
 
   payNow(member) {
-    console.log(member)
     this.route.navigateByUrl(`/payment/${member.id}`);
   }
 
   delete(member) {
     if (confirm(`Delete ${member.name}?`)) {
       this.memberService.unsubscribe(member.id).subscribe(data => {
-        this.memberService.allMembers = this.memberService.allMembers.filter(m=>m.id !== member.id);
-      })
+        this.memberService.allMembers = this.memberService.allMembers.filter(m => m.id !== member.id);
+      });
     }
   }
 
   rejoin(member) {
     if (confirm(`Rejoin ${member.name}?`)) {
-      this.memberService.rejoin(member.id).subscribe(()=>{
-        this.memberService.allMembers = this.memberService.allMembers.filter(m=>m.id !== member.id);
+      this.memberService.rejoin(member.id).subscribe(() => {
+        this.memberService.allMembers = this.memberService.allMembers.filter(m => m.id !== member.id);
       });
     }
-    
+
   }
 
   editMember(member) {

@@ -5,33 +5,34 @@
   <div class="col-md-8">
     <div class="form-group">
       <label for="">Name</label>
-      <input type="text" class="form-control" [(ngModel)] = "member.name">
+      <input type="text" class="form-control" [(ngModel)]="member.name">
     </div>
     <div class="form-group">
       <label for="">Phone</label>
-      <input type="text" class="form-control" [(ngModel)] = "member.mobile">
+      <input type="text" class="form-control" [(ngModel)]="member.mobile">
     </div>
     <div class="form-group">
       <label for="">Image</label>
-      <div><input #fileInput (change) = "setImagePreview($event)" type="file"></div>
+      <div><input #fileInput (change)="setImagePreview($event)" type="file"></div>
     </div>
     <div class="form-group">
       <label for="">Address</label>
       <div>
-        <textarea class="form-control" [(ngModel)] = "member.address"></textarea>
+        <textarea class="form-control" [(ngModel)]="member.address"></textarea>
       </div>
     </div>
-    <div *ngIf = "!isEditForm" class="form-group">
+    <div *ngIf="!isEditForm" class="form-group">
       <label for="">Joining Date</label>
-      <ng-datepicker [(ngModel)]="member.joiningDate" ></ng-datepicker>
+      <ng-datepicker [(ngModel)]="member.joiningDate"></ng-datepicker>
 
     </div>
     <div>
-      <button (click) = "saveMember()" class = "btn btn-primary">Save</button>
+      <button (click)="saveMember()" class="btn btn-primary">Save</button>
     </div>
   </div>
-  <div class = "col-md-4">
-    <userimage *ngIf="memberImgUrl" img="{{memberImgUrl}}"></userimage>
-    <member-info [data]="member" [isDisplayLastPaymentDate]="false" ></member-info>
+  <div class="col-md-4">
+    <user-image *ngIf="memberImgUrl" img="{{memberImgUrl}}">
+    </user-image>
+    <member-info [data]="member" [isDisplayLastPaymentDate]="false"></member-info>
   </div>
 </div>

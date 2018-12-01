@@ -8,29 +8,23 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MemberFormComponent } from './components/member/member-form/member-form.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'members', component: MemberListComponent },
-  { path: 'members/form', component: MemberFormComponent },
-  { path: 'members/form/:id', component: MemberFormComponent },
-  { path: 'members/:action', component: MemberListComponent },
-  { path: 'payment/:id', component: PaymentComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  // { path: 'stories/form', component: StoryFormComponent },
-  // { path: 'stories/form/:id', component: StoryFormComponent },
-  // { path: 'login', component: LoginComponent },
-  // { path: 'register', component: RegisterComponent },
-  // { path: '', redirectTo: '/stories', pathMatch: 'full' },
-  // { path: '**', component: PageNotFoundComponent }
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: 'members', component: MemberListComponent },
+    { path: 'members/form', component: MemberFormComponent },
+    { path: 'members/form/:id', component: MemberFormComponent },
+    { path: 'members/:action', component: MemberListComponent },
+    { path: 'payment/:id', component: PaymentComponent },
+    { path: 'dashboard', component: DashboardComponent }
 ];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(
-      appRoutes,
-  )
-  ],
-  exports:[
-    RouterModule
-  ]
+    imports: [
+        RouterModule.forRoot(
+            appRoutes,
+        )
+    ],
+    exports: [
+        RouterModule
+    ]
 })
 export class AppRoutingModule { }

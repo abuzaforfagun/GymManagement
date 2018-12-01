@@ -10,18 +10,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  user:any = {};
+  user: any = {};
   loginMessage: any;
   constructor(private httpService: HttpService,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit() {
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       this.router.navigateByUrl('dashboard');
     }
   }
 
-  onLoggedin(){
+  onLoggedin() {
     console.log(this.user);
     this.httpService.login(this.user).then((data) => {
       if (data) {

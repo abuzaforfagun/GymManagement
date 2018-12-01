@@ -44,7 +44,7 @@ import { DeprecatedDatePipe } from '@angular/common';
     AppRoutingModule,
     HttpClientModule,
     NgDatepickerModule,
-    NgbModule.forRoot()
+    NgbModule
   ],
   providers: [MemberService, HttpService, AuthService, DeprecatedDatePipe],
   bootstrap: [AppComponent]

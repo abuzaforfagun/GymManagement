@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../services/core/http.service';
 import { MemberService } from '../../../services/member.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -39,7 +38,7 @@ export class MemberListComponent implements OnInit {
     }
     this.isSearchButtonClicked = true;
     this._userList = this.memberService.allMembers;
-    this.memberService.allMembers = this._userList.filter(u => u.mobile == this.search);
+    this.memberService.allMembers = this._userList.filter(u => u.mobile === this.search);
   }
 
   clearSearch() {
@@ -49,10 +48,10 @@ export class MemberListComponent implements OnInit {
   }
 
   gotoAddPage() {
-    this.router.navigateByUrl("members/form");
+    this.router.navigateByUrl('members/form');
   }
 
   gotoArchiveListPage() {
-    this.router.navigateByUrl("members/archive");
+    this.router.navigateByUrl('members/archive');
   }
 }

@@ -12,11 +12,11 @@ export class MemberService {
   getAll(isArchive = false) {
     let api = `/member`;
     if (isArchive) {
-      api = `/member/archive`
+      api = `/member/archive`;
     }
     return this.httpService.get(api).subscribe(data => {
       this.allMembers = data;
-    })
+    });
   }
 
   add(member) {

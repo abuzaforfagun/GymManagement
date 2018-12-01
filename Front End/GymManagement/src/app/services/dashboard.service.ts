@@ -17,7 +17,7 @@ export class DashboardService {
       this.unpaidBillForOneMonth = this.unpaidBills.filter(bill => bill.unpaidBills.length === 1);
       this.unpaidBillForMoreThanOneMonth = this.unpaidBills.filter(bill => bill.unpaidBills.length > 1);
       console.log(this.unpaidBillForOneMonth);
-    })
+    });
   }
 
 }

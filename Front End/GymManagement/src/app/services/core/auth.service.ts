@@ -7,9 +7,9 @@ export class AuthService {
 
   isAuthenticate = false;
   token: string;
-  constructor() { 
-    let token = localStorage.getItem('token');
-    if(token){
+  constructor() {
+    const token = localStorage.getItem('token');
+    if (token) {
       this.isAuthenticate = true;
     }
   }

@@ -8,19 +8,18 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class HttpService {
 
-  // apiRoot = 'http://speed-gym.azurewebsites.net/api';
+  apiRoot = 'http://speed-gym.azurewebsites.net/api';
 
-  apiRoot = 'http://localhost:50187/api';
   constructor(private http: HttpClient,
     private authService: AuthService) { }
 
   handleError(err) {
     if (err.status === 401) {
       this.authService.clearAuthentication();
-      return Observable.throw("Authentication failed!");
+      return Observable.throw('Authentication failed!');
     }
 
-    return Observable.throw("Failed to handle the request!");
+    return Observable.throw('Failed to handle the request!');
 
   }
   public get(url) {
@@ -69,7 +68,6 @@ export class HttpService {
   private getHttpOptions() {
     return {
       headers: new HttpHeaders({
-        // 'Content-Type': 'application/json',
         'Authorization': `bearer ${this.authService.getToken()}`
       })
     };

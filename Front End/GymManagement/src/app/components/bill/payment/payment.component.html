@@ -1,50 +1,51 @@
 <div *ngIf="member" class="row">
-    <div class="col-md-4">
-      <userimage img="{{member.imageUrl}}"></userimage>
-      <member-info [data] = "member"></member-info>
+  <div class="col-md-4">
+    <user-image img="{{member.imageUrl}}">
+    </user-image>
+    <member-info [data]="member"></member-info>
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+      <h2>Pay Now</h2>
     </div>
-    <div class="col-md-8">
-      <div class = "row">
-        <h2>Pay Now</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Date</label>
+        <ng-datepicker [(ngModel)]="billingDate"></ng-datepicker>
+
       </div>
-      <div class = "row">
-          <div class="col-md-4">
-              <label>Date</label>
-              <ng-datepicker [(ngModel)]="billingDate" ></ng-datepicker>
-              
-            </div>
-            <div class="col-md-4">
-              <label>Amount</label>
-              <input [(ngModel)] = "billingAmount" type="text" class="form-control datetime" placeholder="Amount" />
-            </div>
-            <div class = "col-md-4">
-              <label></label><br/>
-              <button (click) = "payNow(member)">Pay Now</button>
-            </div>
+      <div class="col-md-4">
+        <label>Amount</label>
+        <input [(ngModel)]="billingAmount" type="text" class="form-control datetime" placeholder="Amount" />
       </div>
-      <div *ngIf="isBillingComplete" class ="row">
-        <hr/><br/>
-        <span class = "information">Payment Successful</span>
-        <button class = "btn btn-primary">Print Reciept</button>
-      </div>
-      <div class = "row">
-        <div class = "col-md-12">
-            <br/>
-            <h2>Billing History</h2><br/>
-            <table class ="table">
-              <tr>
-                <th>Payment Month</th>
-                <th>Payment Date</th>
-              </tr>
-              <tr *ngFor = "let bill of member.bills">
-                <td>{{bill.date | date:'MMMM y'}}</td>
-                <td>{{bill.updateDate | date}}</td>
-              </tr>
-            </table>
-        </div>
-        
+      <div class="col-md-4">
+        <label></label><br />
+        <button (click)="payNow(member)">Pay Now</button>
       </div>
     </div>
+    <div *ngIf="isBillingComplete" class="row">
+      <hr /><br />
+      <span class="information">Payment Successful</span>
+      <button class="btn btn-primary">Print Reciept</button>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <br />
+        <h2>Billing History</h2><br />
+        <table class="table">
+          <tr>
+            <th>Payment Month</th>
+            <th>Payment Date</th>
+          </tr>
+          <tr *ngFor="let bill of member.bills">
+            <td>{{bill.date | date:'MMMM y'}}</td>
+            <td>{{bill.updateDate | date}}</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
 </div>
 <div *ngIf="!member">
   Loading...

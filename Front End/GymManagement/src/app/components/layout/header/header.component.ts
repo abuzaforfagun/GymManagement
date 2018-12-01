@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  pushRightClass: string = 'push-right';
+  pushRightClass = 'push-right';
   constructor() { }
 
   ngOnInit() {
@@ -29,9 +29,5 @@ export class HeaderComponent implements OnInit {
 
   onLoggedout() {
     localStorage.removeItem('isLoggedin');
-  }
-
-  changeLang(language: string) {
-    // this.translate.use(language);
   }
 }

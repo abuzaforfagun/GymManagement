@@ -15,15 +15,15 @@ export class PaymentComponent implements OnInit {
   billingAmount: number;
   isBillingComplete: boolean;
   constructor(private activeRoute: ActivatedRoute,
-              private memberService: MemberService,
-              private billService: BillService) { }
+    private memberService: MemberService,
+    private billService: BillService) { }
 
   ngOnInit() {
     const params = this.activeRoute.snapshot.params;
     this.billingDate = new Date();
     this.memberService.get(params.id).subscribe(data => {
       this.member = data;
-    })
+    });
   }
 
   payNow() {
@@ -31,14 +31,13 @@ export class PaymentComponent implements OnInit {
     bill = {
       date: this.billingDate,
       amount: this.billingAmount
-    }
-    console.log(this.member);
-    this.billService.pay(this.member.id, bill).subscribe(data=>{
+    };
+    this.billService.pay(this.member.id, bill).subscribe(data => {
       this.billingDate = '';
       this.billingAmount = 0;
       this.isBillingComplete = true;
       bill.updateDate = new Date();
       this.member.bills.push(bill);
-    })
+    });
   }
 }
